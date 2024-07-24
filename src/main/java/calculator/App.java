@@ -69,6 +69,20 @@ public class App {
                 System.out.println("삭제할 연산 결과가 없습니다.");
             }
 
+            System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회): ");
+            String inquiryIntent = sc.nextLine();
+            if (inquiryIntent.equals("inquiry")) {
+                System.out.print("연산 결과: [");
+                int index = 0;
+                for (Integer v : resultQueue) {
+                    System.out.print(v);
+                    if (index != resultQueue.size() - 1)
+                        System.out.print(", ");
+                    index++;
+                }
+                System.out.println("]");
+            }
+
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
             String terminationIntent = sc.nextLine();
             if (terminationIntent.equals("exit"))
