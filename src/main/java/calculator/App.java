@@ -7,7 +7,7 @@ public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] resultList = new int[10];
+        int[] resultList = new int[5];
         int resultListIndex = 0;
 
         while (true) {
@@ -51,11 +51,21 @@ public class App {
                         continue;
                 }
                 System.out.println("결과: " + result);
-                // 결과 배열에 저장
-                resultList[resultListIndex] = result;
+                if (resultListIndex >= resultList.length) {
+                    // resultList가 꽉 찼을때 배열을 앞으로 한칸씩 민다.
+                    for (int i = 1; i < resultList.length; i++) {
+                        resultList[i - 1] = resultList[i];
+                    }
+                    // 결과 배열에 저장
+                    resultList[resultList.length - 1] = result;
+                } else {
+                    // 결과 배열에 저장
+                    resultList[resultListIndex] = result;
+                }
+
                 // 다음에 저장할 위치를 바꾼다
-                // 최대로 resultList.length - 1 이 되게끔 함
-                resultListIndex = Math.min(resultList.length - 1, resultListIndex + 1);
+                // 최대로 resultList.length이 되게끔 함
+                resultListIndex = Math.min(resultList.length, resultListIndex + 1);
             } catch (StringIndexOutOfBoundsException e) {
                 // sc.nextLine().charAt(0) 에서 오류가 발생했을때
                 System.out.println("잘못된 사칙연산 기호 입력입니다.");
