@@ -50,7 +50,7 @@ public class App {
             String removeIntent = sc.nextLine();
             try {
                 if (removeIntent.equals("remove"))
-                    calculator.resultQueue.remove();
+                    calculator.getResultQueue().remove();
             } catch (NoSuchElementException e) {
                 System.out.println("삭제할 연산 결과가 없습니다.");
             }
@@ -60,9 +60,9 @@ public class App {
             if (inquiryIntent.equals("inquiry")) {
                 System.out.print("연산 결과: [");
                 int index = 0;
-                for (Double v : calculator.resultQueue) {
+                for (Double v : calculator.getResultQueue()) {
                     System.out.print(v);
-                    if (index != calculator.resultQueue.size() - 1)
+                    if (index != calculator.getResultQueue().size() - 1)
                         System.out.print(", ");
                     index++;
                 }
