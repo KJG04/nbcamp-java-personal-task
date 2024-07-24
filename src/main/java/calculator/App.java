@@ -1,14 +1,11 @@
 package calculator;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] resultList = new int[5];
-        int resultListIndex = 0;
+        Queue<Integer> resultQueue = new LinkedList<>();
 
         while (true) {
             int num1;
@@ -51,21 +48,9 @@ public class App {
                         continue;
                 }
                 System.out.println("결과: " + result);
-                if (resultListIndex >= resultList.length) {
-                    // resultList가 꽉 찼을때 배열을 앞으로 한칸씩 민다.
-                    for (int i = 1; i < resultList.length; i++) {
-                        resultList[i - 1] = resultList[i];
-                    }
-                    // 결과 배열에 저장
-                    resultList[resultList.length - 1] = result;
-                } else {
-                    // 결과 배열에 저장
-                    resultList[resultListIndex] = result;
-                }
 
-                // 다음에 저장할 위치를 바꾼다
-                // 최대로 resultList.length이 되게끔 함
-                resultListIndex = Math.min(resultList.length, resultListIndex + 1);
+                // queue의 제일 뒤에 데이터 추가
+                resultQueue.add(result);
             } catch (StringIndexOutOfBoundsException e) {
                 // sc.nextLine().charAt(0) 에서 오류가 발생했을때
                 System.out.println("잘못된 사칙연산 기호 입력입니다.");
@@ -75,10 +60,20 @@ public class App {
                 continue;
             }
 
+            System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제): ");
+            String removeIntent = sc.nextLine();
+            try {
+                if (removeIntent.equals("remove"))
+                    resultQueue.remove();
+            } catch (NoSuchElementException e) {
+                System.out.println("삭제할 연산 결과가 없습니다.");
+            }
+
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
             String terminationIntent = sc.nextLine();
             if (terminationIntent.equals("exit"))
                 break;
+
         }
     }
 }
