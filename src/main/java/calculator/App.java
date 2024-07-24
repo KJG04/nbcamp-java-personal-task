@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        CircleCalculator circleCalculator = new CircleCalculator();
 
         while (true) {
             System.out.print("사칙연산을 진행하고 싶으시면 1번. 원의 넓이를 계산하고 싶으시면 2번을 입력해주세요: ");
@@ -56,9 +57,9 @@ public class App {
                 }
 
                 try {
-                    double result = calculator.calculate(num1, num2, operator);
+                    double result = arithmeticCalculator.calculate(num1, num2, operator);
                     System.out.println("결과: " + result);
-                    calculator.getResultQueue().add(result);
+                    arithmeticCalculator.getResultQueue().add(result);
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                     continue;
@@ -68,7 +69,7 @@ public class App {
                 String removeIntent = sc.nextLine();
                 try {
                     if (removeIntent.equals("remove"))
-                        calculator.removeResult();
+                        arithmeticCalculator.removeResult();
                 } catch (NoSuchElementException e) {
                     System.out.println(e.getMessage());
                 }
@@ -76,7 +77,7 @@ public class App {
                 System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회): ");
                 String inquiryIntent = sc.nextLine();
                 if (inquiryIntent.equals("inquiry"))
-                    calculator.inquiryResults();
+                    arithmeticCalculator.inquiryResults();
             } else {
                 int radius;
 
@@ -90,10 +91,10 @@ public class App {
                     continue;
                 }
 
-                double result = calculator.calculateCircleArea(radius);
+                double result = circleCalculator.calculate(radius);
                 System.out.println("결과: " + result);
-                calculator.getCircleAreResultQueue().add(result);
-                calculator.inquiryCircleAreaResults();
+                circleCalculator.getResultQueue().add(result);
+                circleCalculator.inquiryResults();
             }
 
 
