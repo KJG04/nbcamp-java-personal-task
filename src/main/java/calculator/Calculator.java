@@ -42,4 +42,16 @@ public class Calculator {
         // resultQueue 에서 첫번째 요소 삭제
         this.resultQueue.remove();
     }
+
+    public void inquiryResults() {
+        System.out.print("연산 결과: [");
+        int index = 0;
+        for (Double v : this.resultQueue) {
+            System.out.print(v);
+            if (index != this.resultQueue.size() - 1)
+                System.out.print(", ");
+            index++;
+        }
+        System.out.println("]");
+    }
 }
