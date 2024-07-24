@@ -1,6 +1,7 @@
 package calculator;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class Calculator {
@@ -32,5 +33,13 @@ public class Calculator {
 
     public void setResultQueue(Queue<Double> resultQueue) {
         this.resultQueue = resultQueue;
+    }
+
+    public void removeResult() {
+        if (this.resultQueue.isEmpty())
+            throw new NoSuchElementException("삭제할 연산 결과가 없습니다.");
+
+        // resultQueue 에서 첫번째 요소 삭제
+        this.resultQueue.remove();
     }
 }

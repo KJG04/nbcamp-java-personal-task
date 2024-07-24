@@ -50,9 +50,9 @@ public class App {
             String removeIntent = sc.nextLine();
             try {
                 if (removeIntent.equals("remove"))
-                    calculator.getResultQueue().remove();
+                    calculator.removeResult();
             } catch (NoSuchElementException e) {
-                System.out.println("삭제할 연산 결과가 없습니다.");
+                System.out.println(e.getMessage());
             }
 
             System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회): ");
