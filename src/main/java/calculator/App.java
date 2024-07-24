@@ -1,11 +1,13 @@
 package calculator;
 
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Queue<Integer> resultQueue = new LinkedList<>();
+        Calculator calculator = new Calculator();
 
         while (true) {
             int num1;
@@ -25,46 +27,30 @@ public class App {
                 continue;
             }
 
-
+            char operator;
             try {
                 System.out.print("사칙연산 기호를 입력하세요: ");
-                char operator = sc.nextLine().charAt(0);
-                int result = 0;
-                switch (operator) {
-                    case '+':
-                        result = num1 + num2;
-                        break;
-                    case '-':
-                        result = num1 - num2;
-                        break;
-                    case '*':
-                        result = num1 * num2;
-                        break;
-                    case '/':
-                        result = num1 / num2;
-                        break;
-                    default:
-                        System.out.println("잘못된 사칙연산 기호 입력입니다.");
-                        continue;
-                }
-                System.out.println("결과: " + result);
-
-                // queue의 제일 뒤에 데이터 추가
-                resultQueue.add(result);
+                operator = sc.nextLine().charAt(0);
             } catch (StringIndexOutOfBoundsException e) {
                 // sc.nextLine().charAt(0) 에서 오류가 발생했을때
                 System.out.println("잘못된 사칙연산 기호 입력입니다.");
                 continue;
-            } catch (ArithmeticException e) {
-                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+            }
+
+            double result;
+            try {
+                result = calculator.calculate(num1, num2, operator);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
                 continue;
             }
+            System.out.println("결과: " + result);
 
             System.out.print("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제): ");
             String removeIntent = sc.nextLine();
             try {
                 if (removeIntent.equals("remove"))
-                    resultQueue.remove();
+                    calculator.resultQueue.remove();
             } catch (NoSuchElementException e) {
                 System.out.println("삭제할 연산 결과가 없습니다.");
             }
@@ -74,9 +60,9 @@ public class App {
             if (inquiryIntent.equals("inquiry")) {
                 System.out.print("연산 결과: [");
                 int index = 0;
-                for (Integer v : resultQueue) {
+                for (Double v : calculator.resultQueue) {
                     System.out.print(v);
-                    if (index != resultQueue.size() - 1)
+                    if (index != calculator.resultQueue.size() - 1)
                         System.out.print(", ");
                     index++;
                 }

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Calculator {
-    private Queue<Double> resultQueue;
+    public Queue<Double> resultQueue;
 
     public Calculator() {
         this.resultQueue = new LinkedList<>();
