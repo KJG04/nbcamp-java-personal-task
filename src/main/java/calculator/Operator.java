@@ -1,5 +1,6 @@
 package calculator;
 
+@FunctionalInterface
 public interface Operator {
-    public double operate(int num1, int num2);
+    public abstract double operate(int num1, int num2);
 }

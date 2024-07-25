@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator(new AddOperator());
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator(OperatorType.ADD);
         CircleCalculator circleCalculator = new CircleCalculator();
 
         while (true) {
@@ -57,14 +57,7 @@ public class App {
                 }
 
                 try {
-                    arithmeticCalculator.setOperator(switch (operator) {
-                        case '+' -> new AddOperator();
-                        case '-' -> new SubtractOperator();
-                        case '*' -> new MultiplyOperator();
-                        case '/' -> new DivideOperator();
-                        case '%' -> new ModOperator();
-                        default -> throw new IllegalArgumentException("잘못된 사칙연산 기호 입력입니다.");
-                    });
+                    arithmeticCalculator.setOperatorType(OperatorType.getOperatorTypeByOperatorChar(operator));
                     double result = arithmeticCalculator.calculate(num1, num2);
                     System.out.println("결과: " + result);
                     arithmeticCalculator.getResultQueue().add(result);

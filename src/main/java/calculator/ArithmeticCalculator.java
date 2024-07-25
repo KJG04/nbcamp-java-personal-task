@@ -1,18 +1,18 @@
 package calculator;
 
 public class ArithmeticCalculator extends Calculator {
-    private Operator operator;
+    private OperatorType operatorType;
 
-    public ArithmeticCalculator(Operator operator) {
+    public ArithmeticCalculator(OperatorType operatorType) {
         super();
-        this.operator = operator;
+        this.operatorType = operatorType;
     }
 
-    public void setOperator(Operator operator) {
-        this.operator = operator;
+    public void setOperatorType(OperatorType operatorType) {
+        this.operatorType = operatorType;
     }
 
     public double calculate(int num1, int num2) {
-        return this.operator.operate(num1, num2);
+        return this.operatorType.operate(num1, num2);
     }
 }
