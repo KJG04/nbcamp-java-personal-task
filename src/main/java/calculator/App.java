@@ -77,8 +77,12 @@ public class App {
 
                 System.out.print("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회): ");
                 String inquiryIntent = sc.nextLine();
-                if (inquiryIntent.equals("inquiry"))
-                    arithmeticCalculator.inquiryResults();
+                if (inquiryIntent.equals("inquiry")) {
+                    System.out.print("숫자를 입력해주세요. (입력한 숫자보다 큰 숫자만 조회함): ");
+                    int n = sc.nextInt();
+                    sc.nextLine();
+                    arithmeticCalculator.inquiryResults(n);
+                }
             } else {
                 int radius;
 

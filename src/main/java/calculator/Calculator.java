@@ -3,6 +3,7 @@ package calculator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
+import java.util.stream.Collectors;
 
 public abstract class Calculator {
     private Queue<Double> resultQueue;
@@ -29,15 +30,6 @@ public abstract class Calculator {
     }
 
     public void inquiryResults() {
-        System.out.print("연산 결과: ");
-        System.out.print("[");
-        int index = 0;
-        for (Double v : this.resultQueue) {
-            System.out.print(v);
-            if (index != this.resultQueue.size() - 1)
-                System.out.print(", ");
-            index++;
-        }
-        System.out.println("]");
+        System.out.println("연산 결과: " + this.resultQueue.stream().map(String::valueOf).collect(Collectors.joining(", ", "[", "]")));
     }
 }

@@ -10,7 +10,8 @@ public enum OperatorType {
     SUBTRACT('-', new SubtractOperator()),
     MULTIPLY('*', new MultiplyOperator()),
     DIVIDE('/', new DivideOperator()),
-    MOD('%', new ModOperator());
+    MOD('%', new ModOperator()),
+    POWER('^', new PowerOperator());
 
     private final char operatorChar;
     private final Operator operator;
