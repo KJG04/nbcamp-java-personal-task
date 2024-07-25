@@ -1,7 +1,7 @@
 package calculator;
 
 public class SubtractOperator implements Operator {
-    public double operate(int num1, int num2) {
-        return num1 - num2;
+    public <T extends Number> double operate(T num1, T num2) {
+        return num1.doubleValue() - num2.doubleValue();
     }
 }

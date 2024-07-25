@@ -20,7 +20,7 @@ public enum OperatorType {
         this.operator = operator;
     }
 
-    public double operate(int num1, int num2) {
+    public <T extends Number> double operate(T num1, T num2) {
         return this.operator.operate(num1, num2);
     }
 

@@ -29,8 +29,8 @@ public class App {
             }
 
             if (calculateIntent == 1) {
-                int num1;
-                int num2;
+                double num1;
+                double num2;
 
                 try {
                     System.out.print("첫 번째 숫자를 입력하세요: ");

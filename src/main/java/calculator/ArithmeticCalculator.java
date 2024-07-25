@@ -12,7 +12,7 @@ public class ArithmeticCalculator extends Calculator {
         this.operatorType = operatorType;
     }
 
-    public double calculate(int num1, int num2) {
+    public <T extends Number> double calculate(T num1, T num2) {
         return this.operatorType.operate(num1, num2);
     }
 }
